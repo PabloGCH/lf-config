@@ -1,4 +1,6 @@
-#set icons
+# adds icons
+
+set icons
 
 # draws the borders of the file manager
 set drawbox
