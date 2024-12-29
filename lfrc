@@ -1,3 +1,6 @@
+set info size
+set dircounts
+
 # adds icons
 
 set icons
@@ -52,8 +55,11 @@ map O $mimeopen --ask $f
 # text files and a file opener for the rest.
 cmd open &{{
     case $(file --mime-type -Lb $f) in
-        text/*) lf -remote "send $id \$$EDITOR \$fx";;
-        *) for f in $fx; do $OPENER $f > /dev/null 2> /dev/null & done;;
+			text/*) lf -remote "send $id \$$EDITOR \$fx";;
+			application/json) lf -remote "send $id \$$EDITOR \$fx";;
+			image/*) lf -remote "send $id \$ristretto \$fx";;
+			video/*) lf -remote "send $id \$vlc \$fx";;
+      *) for f in $fx; do $OPENER $f > /dev/null 2> /dev/null & done;;
     esac
 }}
 
